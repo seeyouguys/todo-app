@@ -10,12 +10,21 @@ const saveTodos = function (todos) {
 	localStorage.setItem('todosJSON', todosJSON)
 }
 
+// Remove todo by id
+const removeTodo = function (idToRemove) {
+	const index = todos.findIndex(function (todo) {
+		return todo.id === idToRemove
+	})
+	if (index > -1) {
+		todos.splice(index, 1)
+	}
+}
+
 // Create the DOM element for a remove btn and add some functionality to it
 const generateRemoveBtn = function (targetTodo) {
 	btn = document.createElement('button')
 	btn.classList.add('btn', 'btn-sm', 'btn-remove')
 	btn.textContent = 'x'
-	btn.targetTodo = targetTodo
 
 	// Recolor the button on hover
 	btn.addEventListener('mouseenter', function (e) {
@@ -26,8 +35,8 @@ const generateRemoveBtn = function (targetTodo) {
 	})
 	
 	// Remove todo
-	btn.addEventListener('click', function (e) {
-		todos.splice(todos.indexOf(e.target.targetTodo), 1)
+	btn.addEventListener('click', function () {
+		removeTodo(targetTodo.id)
 		saveTodos(todos)
 		renderTodos(filters, todos)
 	})
@@ -53,7 +62,7 @@ const generateCheckbox = function (targetTodo) {
 }
 
 
-// Create the DOM element for a todo
+// Create DOM structure of todo item
 const generateTodoDOM = function (todo) {
 	// <div class="todoRoot card">
 	// 	<div class="todoBody row card-body">
@@ -73,34 +82,37 @@ const generateTodoDOM = function (todo) {
 	// 	</div>
 	// </div>
 
-	// Create elements
-	const checkboxEl = generateCheckbox(todo)
-	const buttonEl = generateRemoveBtn(todo)
+	// Root div
+	const todoRoot = document.createElement('div')
+	todoRoot.classList.add('card')
+	
+	// Todo Body
+	const todoBody = document.createElement('div')
+	todoBody.classList.add('card-body', 'row')
+
+	todoRoot.appendChild(todoBody)
+	
+	// Checkbox
+	const checkboxCol = document.createElement('div')
+	checkboxCol.classList.add('col-sm-1')
+	
+	checkboxCol.appendChild(generateCheckbox(todo))
+	todoBody.appendChild(checkboxCol)
+	
+	// Todo's text
+	const textCol = document.createElement('div')
+	textCol.classList.add('col-sm-9')
 	const textEl = document.createElement('span')
 	textEl.textContent = todo.text
 	
-	// Create DOM structure of todo item
-
-	const todoRoot = document.createElement('div')
-	todoRoot.classList.add('card')
-
-	const todoBody = document.createElement('div')
-	todoBody.classList.add('card-body', 'row')
-	todoRoot.appendChild(todoBody)
-
-	const checkboxCol = document.createElement('div')
-	checkboxCol.classList.add('col-sm-1')
-	checkboxCol.appendChild(checkboxEl)
-	todoBody.appendChild(checkboxCol)
-
-	const textCol = document.createElement('div')
-	textCol.classList.add('col-sm-9')
 	textCol.appendChild(textEl)
 	todoBody.appendChild(textCol)
 
+	// Remove btn
 	const btnCol = document.createElement('div')
 	btnCol.classList.add('col-sm-1')
-	btnCol.appendChild(buttonEl)
+	
+	btnCol.appendChild(generateRemoveBtn(todo))
 	todoBody.appendChild(btnCol)
 
 
