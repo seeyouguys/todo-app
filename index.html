@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	 crossorigin="anonymous">
+	<title>Todo app</title>
+</head>
+<body>
+	<div class="container">
+		<div class="card col-md-8 offset-md-2">
+			
+			<div class="card-header row">
+				<h1 class="mx-auto">A simple Todo app</h1>
+			</div>
+
+			<div class="card-body mx-auto">
+				<div class="inputs">
+					<input type="text" id="filter-input" placeholder="Search...">
+					<label>
+						<input id="hide" type="checkbox"> Hide completed
+					</label>
+					
+					<form id="add-task">
+						<input type="text" name="todo" placeholder="Type a new task here">
+						<button class="btn" type="submit">Add it</button>
+					</form>
+				</div>
+		
+			</div>
+			<div class="card-footer row">
+				<div class="mx-auto">
+					<div id="list-of-tasks">
+						<!-- Todos rendered with a js go here -->
+					</div>
+				</div>
+			</div>
+		
+		</div>
+	</div>
+
+
+	<script src="todo-app-functions.js"></script>
+	<script src="todo-app.js"></script>
+</body>
+</html>
+
+
+<!--// <div class="todoRoot card">
+	// 	<div class="todoBody row card-body">
+
+	// 		<div class="col-xs-1 checkboxCol">
+	// 			<input type="checkbox">
+	// 		</div>
+
+	// 		<div class="col-xs-10 textCol">
+	// 			<span>todo text</span>
+	// 		</div>
+
+	// 		<div class="col-xs-1 btnCol">
+	// 			<button>X</button>
+	// 		</div>
+
+	// 	</div>
+	// </div> -->
