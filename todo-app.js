@@ -20,7 +20,8 @@ document.querySelector('#add-task').addEventListener('submit', function (e) {
 	if (text !== '') {
 		todos.push({
 			text: text,
-			completed: false
+			completed: false,
+			id: uuidv4()
 		})
 		e.target.elements.todo.value = null
 		
@@ -29,7 +30,8 @@ document.querySelector('#add-task').addEventListener('submit', function (e) {
 	} else {
 		todos.push({
 			text: 'Unnamed test Todo',
-			completed: false
+			completed: false,
+			id: uuidv4()
 		})
 		e.target.elements.todo.value = null
 

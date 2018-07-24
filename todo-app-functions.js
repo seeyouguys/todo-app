@@ -48,12 +48,12 @@ const generateRemoveBtn = function (targetTodo) {
 const generateCheckbox = function (targetTodo) {
 	const checkbox = document.createElement('input')
 	checkbox.setAttribute('type', 'checkbox')
-	checkbox.targetTodo = targetTodo
-	checkbox.checked = checkbox.targetTodo.completed
+	checkbox.checked = targetTodo.completed
+	targetId = targetTodo.id
 
 	// Hide/unhide handler
-	checkbox.addEventListener('change', function (e) {
-		e.target.targetTodo.completed = e.target.checked
+	checkbox.addEventListener('change', function () {
+		targetTodo.completed = checkbox.checked
 		saveTodos(todos)
 		renderTodos(filters, todos)
 	})
